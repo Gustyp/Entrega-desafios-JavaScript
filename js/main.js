@@ -1,8 +1,14 @@
-const bienvenida = () => console.log(`Bienvenido al segundo desafío.`);
-const despedida = () => console.log(`Fin del desafío. :)`);
+const bienvenida = () => {
+
+    console.log(`Bienvenido al tercer desafío.`);
+    console.log(`Se le solicitarán una serie de datos para realizar algunas operaciones.`);
+}
+
+const despedir = () => console.log(`Fin del desafio, saludos Nahu! :)`);
 
 bienvenida();
-compararNumerosMayor();
-compararNumerosParOImpar();
-compararLargoPalabras();
-despedida();
+realizarConteo();
+formarOracion();
+repetirPalabra();
+calculadora();
+despedir();
