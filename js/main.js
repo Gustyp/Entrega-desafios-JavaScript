@@ -1,11 +1,12 @@
 // Sa le da bienvenida al usuario al desafío
-const bienvenida = () => console.log("Bienvenido al cuarto desafío complementario");
+const darBienvenida = () => console.log("Bienvenido al cuarto desafío complementario");
 
 // Sa le da despedida al usuario del desafío
-const despedida = () => console.log(`Fin del desafío. :)`);
+const darDespedida = () => console.log(`Fin del desafío. :)`);
 
 
-bienvenida();
+darBienvenida();
 verificacionMultiplo();
 calcularIva();
-despedida();
+calcularPromocionProductos();
+darDespedida();
