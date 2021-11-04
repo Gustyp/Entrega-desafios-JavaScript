@@ -1,14 +1,9 @@
-const bienvenida = () => {
+// Sa le da bienvenida al usuario al desafío
+const darBienvenida = () => console.log("Bienvenido al cuarto desafío");
 
-    console.log(`Bienvenido al tercer desafío.`);
-    console.log(`Se le solicitarán una serie de datos para realizar algunas operaciones.`);
-}
+// Sa le da despedida al usuario del desafío
+const darDespedida = () => console.log(`Fin del desafío. :)`);
 
-const despedir = () => console.log(`Fin del desafio, saludos Nahu! :)`);
-
-bienvenida();
-realizarConteo();
-formarOracion();
-repetirPalabra();
-calculadora();
-despedir();
+darBienvenida();
+simuladorPrestamo();
+darDespedida();
