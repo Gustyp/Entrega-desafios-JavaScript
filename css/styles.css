@@ -22,10 +22,7 @@ body {
 }
 
 @keyframes flip {
-    25% {
-        transform: rotateY(180deg);
-    }
-    75% {
+    50% {
         transform: rotateY(-180deg);
     }
     100% {
