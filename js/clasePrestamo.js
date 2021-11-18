@@ -1,5 +1,6 @@
 class Prestamo {
     constructor(){
+        this.id;
         this.montoInicial = 0;
         this.cuotas = 0;
         this.interes = 0;
@@ -12,7 +13,7 @@ class Prestamo {
     }
 
     // Establece el monto final del préstamo a devolver
-    establecerMontoFinal() {
+    establecerMontoFinal(){
         this.montoFinal = (this.montoInicial + this.montoInicial * this.interes / 100);
     }
 
@@ -36,6 +37,10 @@ class Prestamo {
         }
     }
 
+    establecerId(id){
+        this.id = id;
+    }
+
     // Se pide al usuario el monto pretendido de su préstamo
     solicitarMonto(){
         let monto = Number(prompt("Ingrese el monto de su préstamo:"));
@@ -46,7 +51,7 @@ class Prestamo {
 
     // Se pide al usuario la cantidad de cuotas en las que desea pagar el préstamo solicitado
     solicitarCantidadCuotas(){
-        let cuotas = parseInt(prompt(`¿En cuántas cuotas desea el préstamo?`));
+        let cuotas = Number(prompt(`¿En cuántas cuotas desea el préstamo?`));
         let cuotasValidas = verificarCuotasvalidas(cuotas);
     
         this.cuotas = cuotasValidas;
@@ -54,6 +59,6 @@ class Prestamo {
 
     // Muestra por consola los datos finales del prétamo solicitado
     toString() {
-        return `Usted ha solicitado un préstamo de $${this.montoInicial}.\nDeberá devolverlo en ${this.cuotas} cuotas con un interés del ${this.interes}%.\nEl monto total a devolver será de $${this.montoFinal}\n`
+        return `Id de operación: ${this.id}\nUsted ha solicitado un préstamo de $${this.montoInicial}.\nDeberá devolverlo en ${this.cuotas} cuotas con un interés del ${this.interes}%.\nEl monto total a devolver será de $${this.montoFinal}\n`
     }
 }

@@ -1,5 +1,6 @@
 class Persona {
     constructor(){
+        this.id;
         this.nombre;
         this.apellido;
         this.edad;
@@ -35,7 +36,7 @@ class Persona {
 
     // Se pide al usuario su edad actual
     solicitarEdad(){
-        let edad = parseInt(prompt(`Ingrese su edad: `));
+        let edad = Number(prompt(`Ingrese su edad: `));
         let edadValida = verificarNumeroValido(edad);
     
         this.edad = edadValida;
@@ -47,6 +48,10 @@ class Persona {
         let salarioValido = verificarNumeroValido(salario);
     
         this.salario = salarioValido;
+    }
+
+    establecerId(id){
+        this.id = id;
     }
 
     // Verifica que el usuario sea mayor de edad, solamente en ese caso devolverá true
@@ -65,7 +70,8 @@ class Persona {
 
     // Muestra por consola todos los datos ingresados hasta el momento
     toString() {
-        return `Datos ingresados:
+        return `\nDatos ingresados:
+        Id: ${this.id}
         Nombre: ${this.nombre}
         Apellido: ${this.apellido}
         Edad: ${this.edad} años
