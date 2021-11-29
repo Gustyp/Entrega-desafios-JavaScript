@@ -1,13 +1,14 @@
-class Persona {
+class Usuario {
     constructor(){
-        this.id;
         this.nombre;
         this.apellido;
         this.edad;
-        this.mail;
         this.salario;
+        this.mail;
+        this.contrasenia;
         this.esMayorDeEdad;
         this.esSalarioMinimoAceptado;
+        this.saldoDisponible = 0;
     }
 
     // Se pide al usuario su nombre
@@ -34,9 +35,14 @@ class Persona {
         this.mail = mailValido;
     }
 
+    // Se pide al usuario una contraseña para crear su cuenta
+    solicitarContrasenia(){
+        this.contrasenia = prompt(`Ingrese su contraseña: `);
+    }
+
     // Se pide al usuario su edad actual
     solicitarEdad(){
-        let edad = Number(prompt(`Ingrese su edad: `));
+        let edad = parseInt(prompt(`Ingrese su edad: `));
         let edadValida = verificarNumeroValido(edad);
     
         this.edad = edadValida;
@@ -48,10 +54,6 @@ class Persona {
         let salarioValido = verificarNumeroValido(salario);
     
         this.salario = salarioValido;
-    }
-
-    establecerId(id){
-        this.id = id;
     }
 
     // Verifica que el usuario sea mayor de edad, solamente en ese caso devolverá true
@@ -70,12 +72,12 @@ class Persona {
 
     // Muestra por consola todos los datos ingresados hasta el momento
     toString() {
-        return `\nDatos ingresados:
-        Id: ${this.id}
+        return `Datos ingresados:
         Nombre: ${this.nombre}
         Apellido: ${this.apellido}
+        Salario: $${this.salario}
         Edad: ${this.edad} años
         Mail: ${this.mail}
-        Salario: $${this.salario} mensuales`
+        Contraseña: ${this.contrasenia}`
     }
 }

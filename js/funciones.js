@@ -1,65 +1,90 @@
-// Esta función muestra los datos que se almacenaron en arrays de personas y solicitudes de préstamos.
-const mostrarArrays = (arrayPersonas, arrayPrestamo) => {
-    if (esArrayNoVacio(arrayPersonas)){
-        console.log(`A continuación los datos del array de personas ingresados: `);
-        arrayPersonas.forEach(persona => console.log(persona.toString()));
+// Simula el depósito de dinero en la cuenta del usuario
+const realizarDeposito = () => {
+    console.log(`A continuación se le pedirá el monto que desea depositar en su cuenta:`);
+    const deposito1 = new Deposito();
+    deposito1.solicitarMontoADepositar();
+    console.log(deposito1.toString());
+    return deposito1;
+}
+
+// Simula la transferencia de dinero siempre y cuando sea menor al que posea disponible en el momento el usuario
+const realizarTransferencia = usuario => {
+    const transferencia1 = new Transferencia();
+    if (usuario.saldoDisponible > 0){
+        console.log(`A continuación se le pedirán los datos necesarios para realizar la transferencia.`);
+        transferencia1.solicitarMontoAEnviar();
+        if (usuario.saldoDisponible >= transferencia1.monto){
+            transferencia1.solicitarMail();
+            transferencia1.solicitarCvu();
+            console.log(transferencia1.toString());
+        }
+        else{
+            console.log(`Lo siento, pero no tiene saldo suficiente para realizar esta operación.`);
+            transferencia1.monto = 0;
+        }
     }
-    if (esArrayNoVacio(arrayPrestamo)){
-        console.log(`A continuación los datos del array de préstamos: `);
-        arrayPrestamo.forEach(prestamo => console.log(prestamo.toString()));
+    else{
+        console.log(`Lo siento, pero no tiene saldo suficiente para realizar esta operación.`);
+    }
+    return transferencia1;
+}
+
+// Simula la solicitud de un préstamo en caso de que cumpla con las condiciones necesarias
+const solicitarPrestamo = usuario => {
+    const prestamo1 = new Prestamo();
+    if (usuario.esMayorDeEdad && usuario.esSalarioMinimoAceptado){
+        console.log(`A continuación se te pedirán los datos para solicitar el préstamo deseado.`);
+        prestamo1.solicitarMonto();
+        prestamo1.ofrecerCuotas();
+        prestamo1.solicitarCantidadCuotas();
+        prestamo1.establecerPorcentajeInteres();
+        prestamo1.establecerMontoFinal();
+        console.log(prestamo1.toString());
+
+    }
+    else{
+        console.log(`Lo sentimos, debes ser mayor de edad para solicitar un préstamo y un salario mínimo de $${salarioMinimo}.`);
+    }
+    return prestamo1;
+}
+
+// Se encarga de crear un usuario solicitando todos los datos requeridos para la cuenta
+const crearUsuario = () => {
+    console.log(`Procederemos a crear un usuario nuevo, por favor recuerde que debe ser mayor de 18 años.`);
+    const usuario1 = new Usuario();
+
+    usuario1.solicitarNombre();
+    usuario1.solicitarApellido();
+    usuario1.solicitarEdad();
+    usuario1.solicitarSalario();
+    usuario1.solicitarMail();
+    usuario1.solicitarContrasenia();
+    usuario1.comprobarEsMayorDeEdad();
+    usuario1.comprobarSalarioMinimo();
+    console.log(usuario1.toString());
+
+    return usuario1;
+}
+
+// Inicia la sesión solicitando un usuario y contraseña que hayan sido creados previamente
+const iniciarSesion = usuario => {
+    console.log('Ahora puedes iniciar sesión.\nIngresa tu mail y contraseña:');
+    let mailIngresado = prompt(`Aquí ingresa tu mail: `);
+    let mailAComparar = verificarEsMailValido(mailIngresado);
+    let contraseniaAComparar = prompt(`Aquí ingresa tu contraseña: `);
+    if (mailAComparar == usuario.mail && contraseniaAComparar == usuario.contrasenia){
+        console.log(`¡Bienvenido! ¡Has ingresado a tu cuenta!`);
+        return true;
+    }
+    else{
+        console.log(`Mail o contraseña incorrecta.`);
+        return false;
     }
 }
 
-// Esta función se encarga de ordenar los arrays que se almacenaron anteriormente, de forma ascendente y descendente
-const ordenarArrays = arrayPersonas => {
-    arrayPersonas.sort((a, b) => {
-        const nombreA = a.nombre.toLowerCase();
-        const nombreB = b.nombre.toLowerCase();
-        if (nombreA < nombreB) {
-            return -1;
-        }
-        if (nombreA > nombreB) {
-            return 1;
-        }
-        return 0;
-    })
-    console.log(`Personas ordenadas ascendentemente por nombre:\n${arrayPersonas}`);
-
-    arrayPersonas.sort((a, b) => {
-        const apellidoA = a.apellido.toLowerCase();
-        const apellidoB = b.apellido.toLowerCase();
-        if (apellidoA < apellidoB) {
-            return -1;
-        }
-        if (apellidoA > apellidoB) {
-            return 1;
-        }
-        return 0;
-    })
-    console.log(`Personas ordenadas ascendentemente por apellido:\n${arrayPersonas}`);
-}
-
-// Esta función se encarga de filtrar por las personas que son mayores de edad
-const filtrarPersonasMayores = arrayPersonas => {
-    let arrayPersonasMayores = arrayPersonas.filter(persona => persona.edad >= edadMinima);
-    if (esArrayNoVacio(arrayPersonasMayores)){
-        console.log(`Personas que son mayores de edad: \n${arrayPersonasMayores}.`);
-    }
-}
-
-// Esta función se encarga de filtrar por las personas que cumplen con el salario mínimo aceptado
-const filtrarPersonasSalarioAceptable = arrayPersonas => {
-    let arrayPersonasSalarioAceptable = arrayPersonas.filter(persona => persona.salario >= salarioMinimo);
-    if (esArrayNoVacio(arrayPersonasSalarioAceptable)){    
-        console.log(`Personas que poseen un salario que sobrepasa el mínimo requerido: \n${arrayPersonasSalarioAceptable}.`);
-    }
-}
-
-// Esta función se encarga de filtrar por las personas que cumplen con ambos requisitos, ser mayores y un salario superior al mínimo requerido
-const filtrarPersonasCumplenAmbosRequisitos = arrayPersonas => {
-    let arrayPersonasAmbosRequisitos = arrayPersonas.filter(persona => persona.salario >= salarioMinimo);
-    arrayPersonasAmbosRequisitos = arrayPersonasAmbosRequisitos.filter(persona => persona.edad >= edadMinima);
-    if (esArrayNoVacio(arrayPersonasAmbosRequisitos)){
-        console.log(`Personas que cumplen ambos requisitos y son aptas para solicitar un préstamo: \n${arrayPersonasAmbosRequisitos}.`);
-    }
+// Se le solicita al usuario que ingrese una elección para interactuar con el menu mostrado por consola
+const solicitarEleccion = () => {
+    eleccion = Number(prompt(`Ingrese la opción correspondiente: `));
+    console.log(`Opción elegida: ${eleccion}`);
+    return eleccion;
 }
