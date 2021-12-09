@@ -8,13 +8,12 @@ class ControlSesion{
      * @param {String} password Contraseña del usuario
      */
     static iniciarSesion(usuario, password){
-        let validacion = GestionUsuarios.usuarios.find(Usuario => (Usuario.usuario == usuario)  && (password === Usuario.password));
-        if(validacion){
-            GestionUsuarios.usuarioActual = validacion;
+        let loginExitoso = GestionUsuarios.usuarios.find(Usuario => (Usuario.usuario == usuario)  && (password === Usuario.password));
+        if(loginExitoso){
+            GestionUsuarios.usuarioActual = loginExitoso;
             localStorage.setItem('Usuario-Actual', GestionUsuarios.usuarioActual.usuario);            
             localStorage.setItem('Usuarios', JSON.stringify(GestionUsuarios.usuarios));            
             window.location.href="./home.html";  
-        
         } 
         else{
             document.querySelector('#loginRechazadoTexto').innerHTML = `Usuario y/o contraseñas inválidos, por favor intente otra vez.`;

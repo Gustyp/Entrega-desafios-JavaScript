@@ -12,7 +12,8 @@ class Usuario{
         this.usuario = usuario;
         this.mail = email;
         this.password = password;
-        this.balance = Math.round(Math.random()*9000000);
+        this.saldo = Math.round(Math.random()*99999);
+        this.cvu = Math.round(Math.random()*9999999999999999999999);
         this.movimientos = [];
     }
 }
@@ -35,18 +36,19 @@ class GestionUsuarios{
      * Se encarga de cargar la data del localStorage
      */
     static iniciar(){
-        console.log(`El array es: ${GestionUsuarios.usuarios}`);
         const datosAlmacenados = localStorage.getItem('Usuarios');
         const datosUsuarioActual = localStorage.getItem('Usuario-Actual');
         if(datosAlmacenados){
             GestionUsuarios.usuarios = JSON.parse(datosAlmacenados);
+            console.log(`El array es: ${GestionUsuarios.usuarios}`);
             // Probando que se almacenaron los usuarios en el array correctamente
             GestionUsuarios.usuarios.forEach((Usuario) =>{
             console.log(Usuario)
             })
         }
         if(datosUsuarioActual){
-            GestionUsuarios.usuarioActual = JSON.parse(datosUsuarioActual);
+            GestionUsuarios.usuarioActual = datosUsuarioActual;
+            console.log(`El usuario actual es ${datosUsuarioActual}`);
         }
     }
     

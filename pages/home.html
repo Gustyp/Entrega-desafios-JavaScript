@@ -66,8 +66,8 @@
                             </div>
                             <div class="card-footer">
                                 <div class="d-flex justify-content-evenly">
-                                    <a href="#" class="btn btn-primary m-1 px-4">Ingresar dinero</a>
-                                    <a href="#" class="btn btn-primary m-1 px-4 ">Transferir dinero</a>
+                                    <button type="button" id="ingresoDinero" class="btn btn-primary m-1 px-4">Ingresar dinero</button>
+                                    <button type="button" class="btn btn-primary m-1 px-4 ">Transferir dinero</button>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,6 @@
                                 <h2 class="titulo-home m-auto">Últimos movimientos</h2>
                             </div>
                             <div id="ultimosMovimientos" class="card-body">
-                                <p id="sinMovimientos">No se registraron movimientos hasta el momento.</p>
                             </div>
                         </div>
                     </div>
@@ -88,7 +87,34 @@
                 </div> 
             </div>
         </main>
+        <!-- Botón Modal -->
+        <button type="button" class="btn btn-primary hidden transferencia-modal" data-bs-toggle="modal" data-bs-target="#transferencia"></button>
+        <!-- Modal -->
+        <div class="modal fade" id="transferencia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form id="transaccion">
+                        <div class="modal-header">
+                            <p class="modal-title h4" id="exampleModalLabel">Título</p>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group align-items-center">
+                                <small for="deposito" class="pe-2" id="textoTransferencia"></small>
+                                <input type="number" name="deposito" class="form-control ms-2">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <button type="button" id="transaccionRealizada" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="../src/desafioComplementario.js"></script>
+    <script src="../src/configuracionUsuarios.js"></script>
 </body>
 </html>
