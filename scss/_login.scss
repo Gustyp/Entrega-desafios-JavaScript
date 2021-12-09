@@ -1,5 +1,4 @@
 .login-body {
-
     .container-fluid{
         height: 100%;
         align-content: center;
@@ -8,16 +7,25 @@
         -webkit-backdrop-filter: blur(12px);
     }
     
+    .navbar-title{
+        background: linear-gradient(180deg, $primary, #cd74ee);
+        font-size: 1.4rem;
+        font-weight: bold;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+    }
+
     .card{
         height: 410px;
         margin: auto;
         width: 400px;
         background-color: rgba(0,0,0,0.5);
         animation: float 6s infinite;
-    }
-    
-    .card-header h3{
-        color: white;
+
+        &-header h3{
+            color: white;
+        }
     }
     
     .input-group span{
@@ -60,6 +68,16 @@
         &:hover{
             color: #fbf2ff;
         }
+    }
+
+    .modal-title{
+        @include media-breakpoint-down(sm) {
+            font-size: .9rem;
+        }
+        font-size: 1.4rem;
+        letter-spacing: .1rem;
+        font-weight: bold;
+        color: $secondary;
     }
     
     @keyframes float {

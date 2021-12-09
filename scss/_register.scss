@@ -1,5 +1,4 @@
 .register-body{
-
     .container-fluid{
         height: 100%;
         align-content: center;
@@ -7,9 +6,18 @@
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
     }
+
+    .navbar-title{
+        background: linear-gradient(180deg, $primary, #cd74ee);
+        font-size: 1.4rem;
+        font-weight: bold;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+    }
     
     .card{
-        height: 500px;
+        height: 600px;
         margin: auto;
         width: 400px;
         background-color: rgba(0,0,0,0.5);
@@ -20,11 +28,26 @@
         color: white;
     }
     
-    .input-group span{
-        width: 50px;
-        background-color: #43e995;
-        color: black;
-        border:0 !important;
+    .input-group{
+
+        & span{
+            width: 50px;
+            background-color: #43e995;
+            color: black;
+            border:0 !important;
+        }
+
+        & small{
+            font-size: 0.8em;
+            color: $secondary;
+            left: 0;
+            bottom: 1em;
+            visibility: hidden;
+        }
+
+        &.error small {
+            visibility: visible;
+        }
     }
     
     .remember{
@@ -52,6 +75,16 @@
     .nav-link{
         color: #ffff;
         background-color: $primary;
+    }
+
+    .modal-title{
+        @include media-breakpoint-down(sm) {
+            font-size: .9rem;
+        }
+        font-size: 1.4rem;
+        letter-spacing: .1rem;
+        font-weight: bold;
+        color: $secondary;
     }
     
     @keyframes float {

@@ -11154,6 +11154,10 @@ a {
   display: inline-block;
 }
 
+.hidden {
+  display: none;
+}
+
 .home-body {
   display: flex;
 }
@@ -11275,6 +11279,14 @@ a {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
+.login-body .navbar-title {
+  background: linear-gradient(180deg, #6600FF, #cd74ee);
+  font-size: 1.4rem;
+  font-weight: bold;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
 .login-body .card {
   height: 410px;
   margin: auto;
@@ -11319,6 +11331,17 @@ a {
 .login-body .link:hover {
   color: #fbf2ff;
 }
+.login-body .modal-title {
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  color: #00CC99;
+}
+@media (max-width: 575.98px) {
+  .login-body .modal-title {
+    font-size: 0.9rem;
+  }
+}
 @keyframes float {
   0% {
     box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
@@ -11341,8 +11364,16 @@ a {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
+.register-body .navbar-title {
+  background: linear-gradient(180deg, #6600FF, #cd74ee);
+  font-size: 1.4rem;
+  font-weight: bold;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
 .register-body .card {
-  height: 500px;
+  height: 600px;
   margin: auto;
   width: 400px;
   background-color: rgba(0, 0, 0, 0.5);
@@ -11356,6 +11387,16 @@ a {
   background-color: #43e995;
   color: black;
   border: 0 !important;
+}
+.register-body .input-group small, .register-body .input-group .small {
+  font-size: 0.8em;
+  color: #00CC99;
+  left: 0;
+  bottom: 1em;
+  visibility: hidden;
+}
+.register-body .input-group.error small, .register-body .input-group.error .small {
+  visibility: visible;
 }
 .register-body .remember {
   color: white;
@@ -11379,6 +11420,17 @@ a {
   color: #ffff;
   background-color: #6600FF;
 }
+.register-body .modal-title {
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  color: #00CC99;
+}
+@media (max-width: 575.98px) {
+  .register-body .modal-title {
+    font-size: 0.9rem;
+  }
+}
 @keyframes float {
   0% {
     box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
@@ -11394,6 +11446,14 @@ a {
   }
 }
 
+.index-body .navbar-title {
+  background: linear-gradient(180deg, #6600FF, #cd74ee);
+  font-size: 1.4rem;
+  font-weight: bold;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
 .index-body .home {
   height: 100vh;
   display: flex;

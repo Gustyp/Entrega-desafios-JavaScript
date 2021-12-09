@@ -1,5 +1,14 @@
 .index-body{
 
+    .navbar-title{
+        background: linear-gradient(180deg, $primary, #cd74ee);
+        font-size: 1.4rem;
+        font-weight: bold;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+    }
+
     .home{
         height: 100vh;
         display: flex;
