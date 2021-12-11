@@ -7,18 +7,19 @@ class Usuario{
      * @param {String} usuario Nombre de usuario
      * @param {String} email Correo electrónico del usuario
      * @param {String} password Contraseña del usuario
+     * @param {String} cvu Clave virtual uniforme que se le otorga al usuario al crear una cuenta con éxito
      */
-    constructor(usuario, email, password){
+    constructor(usuario, email, password, cvu){
         this.usuario = usuario;
         this.mail = email;
         this.password = password;
-        this.saldo = Math.round(Math.random()*99999);
-        this.cvu = Math.round(Math.random()*9999999999999999999999);
+        this.saldo = Number(Math.round(Math.random()*99999));
+        this.cvu = cvu;
         this.movimientos = [];
     }
 }
 
-// Gestión de las cuentas de usuario
+// Clase para la gestión de las cuentas de usuario
 class GestionUsuarios{
     /** 
      * Array de usuarios 
@@ -52,10 +53,24 @@ class GestionUsuarios{
         }
     }
     
-    // Guarda usuario en el localStorage y lo mantiene actualizado
+    /**
+     * Guarda usuario en el localStorage y lo mantiene actualizado
+     * @param {Array} usuarios Array de los usuarios almacenados en el localStorage
+     */
     static guardarUsuario(usuarios){
         localStorage.setItem('Usuarios', JSON.stringify(usuarios));
     };
+
+    /**
+     * Crea un cvu único para el usuario
+     * @returns Devuelve el cvu creado
+     */
+    static crearCvu(){
+        const primeraParteCVU = Math.round(Math.random()*99999999999);
+        const segundaParteCVU = Math.round(Math.random()*99999999999);
+        const cvuCompleto = primeraParteCVU.toString() + segundaParteCVU.toString();
+        return cvuCompleto;
+    }
 
     /**
      * 
@@ -63,7 +78,6 @@ class GestionUsuarios{
      * @param {String} email Mail del usuario a ser creado
      * @param {String} password Contraseña del usuario a ser creado
      * @param {String} rePassword Confirmación de la contraseña del usuario a ser creado
-     * @returns {object} Devuelve el usuario creado
      */
     static crearNuevoUsuario(nuevoUsuario, email, password, rePassword) {
         const minCaracteresUsuario = 3;
@@ -77,19 +91,19 @@ class GestionUsuarios{
         const cuartaValidacion = ValidacionUsuario.esEmailUnico(email);
         const quintaValidacion = ValidacionUsuario.esUsuarioUnico(nuevoUsuario);
         arrayValidaciones.push(primerValidacion, segundaValidacion, terceraValidacion, cuartaValidacion, quintaValidacion);
-        const RegistroExitoso = arrayValidaciones.every(e =>  e);
+        const RegistroExitoso = arrayValidaciones.every(e => e);
         // console.log(arrayValidaciones);
         // console.log(RegistroExitoso);
-        if (RegistroExitoso){ 
-            const usuario = new Usuario(nuevoUsuario, email, password);
+        if (RegistroExitoso){
+            const cvu = GestionUsuarios.crearCvu(); 
+            const usuario = new Usuario(nuevoUsuario, email, password, cvu);
             GestionUsuarios.usuarios.push(usuario);
             GestionUsuarios.guardarUsuario(GestionUsuarios.usuarios);
-            document.querySelector('.modal-usuario-creado').innerHTML = `Bienvenido/a ${nuevoUsuario}, esperamos que su experiencia en nuestro banco sea digna de sus expectativas.`;
+            document.querySelector('.modal-usuario-creado').innerHTML = `Bienvenido/a ${nuevoUsuario}, esperamos poder brindarle la mejor experiencia.`;
             document.querySelector('.registro-modal').click();
             document.querySelector('.redireccion-index').addEventListener('click', () => {
             window.location ="login.html"; 
-        });
-        return usuario;
+            });
         }
     }
 }

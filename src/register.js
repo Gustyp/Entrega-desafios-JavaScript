@@ -1,4 +1,3 @@
-
 const obtenerDatosFormulario = e => {
     e.preventDefault();
     const data = new FormData(e.target);
