@@ -9,7 +9,8 @@ const transferirDinero = () =>{
     document.querySelector(`.transferencia-modal`).click();
     saldoDisponible.innerHTML = `Saldo disponible: $${usuarioEnUso.saldo}`;
     $(() => $('#volverAlHome').on('click', volverAHome));  
-    document.querySelector('#transaccion').addEventListener('submit', e =>{
+    // document.querySelector('#transaccion').addEventListener('submit', e =>{
+    $(() => $('#transaccion').on('submit', e => {    
         e.preventDefault();
         const data = new FormData(e.target);
         const dineroTransferencia = data.get(`transferencia`);
@@ -24,7 +25,7 @@ const transferirDinero = () =>{
         localStorage.setItem('Usuarios', JSON.stringify(GestionUsuarios.usuarios));
         // document.querySelector('#transaccionRealizada').addEventListener('click', volverAHome);
         $(() => $('#transaccionRealizada').on('click', volverAHome));
-    })
+    }));
 }
 
 const depositarEnCuenta = e => {
@@ -80,11 +81,6 @@ const iniciar = () => {
         resumen.appendChild(sinMovimientos);
     }
     agregarMovimientos(usuarioEnUso);
-    // usuarioEnUso.movimientos.forEach( e => {
-    //     let nuevaOperacion = document.createElement(`p`);
-    //     nuevaOperacion.innerHTML = e.descripcion;
-    //     resumen.appendChild(nuevaOperacion);
-    // })
     // document.querySelector(`#ingresoDinero`).addEventListener(`click`, depositarDinero);
     // document.querySelector(`#envioDinero`).addEventListener(`click`, transferirDinero);
     $(() => $('#ingresoDinero').on('click', depositarDinero));
