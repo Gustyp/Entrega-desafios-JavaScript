@@ -21,7 +21,6 @@
         margin: auto;
         width: 400px;
         background-color: rgba(0,0,0,0.5);
-        animation: float 6s infinite;
     }
     
     .card-header h3{
@@ -85,21 +84,6 @@
         letter-spacing: .1rem;
         font-weight: bold;
         color: $secondary;
-    }
-    
-    @keyframes float {
-        0% {
-            box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
-            transform: translatey(0px);
-        }
-        50% {
-            box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
-            transform: translatey(-20px);
-        }
-        100% {
-            box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
-            transform: translatey(0px);
-        }
     }
 }
 

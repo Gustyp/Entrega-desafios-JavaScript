@@ -8,9 +8,7 @@ const transferirDinero = () =>{
     document.querySelector('#textoTransferencia').innerHTML = `Ingrese el valor de su transferencia:`;
     document.querySelector(`.transferencia-modal`).click();
     saldoDisponible.innerHTML = `Saldo disponible: $${usuarioEnUso.saldo}`;
-    document.querySelector(`#volverAlHome`).addEventListener('click', () => {
-        window.location.href="./home.html";
-    })  
+    $(() => $('#volverAlHome').on('click', volverAHome));  
     document.querySelector('#transaccion').addEventListener('submit', e =>{
         e.preventDefault();
         const data = new FormData(e.target);
@@ -24,7 +22,8 @@ const transferirDinero = () =>{
         document.querySelector('#textoOperacionRealizada').innerHTML = `¡Operación realizada con éxito!`;
         usuarioEnUso.saldo-= Number(dineroTransferencia);
         localStorage.setItem('Usuarios', JSON.stringify(GestionUsuarios.usuarios));
-        document.querySelector('#transaccionRealizada').addEventListener('click', volverAHome);
+        // document.querySelector('#transaccionRealizada').addEventListener('click', volverAHome);
+        $(() => $('#transaccionRealizada').on('click', volverAHome));
     })
 }
 
@@ -42,7 +41,8 @@ const depositarEnCuenta = e => {
     document.querySelector('#textoOperacionRealizada').innerHTML = `¡Operación realizada con éxito!`;
     usuarioEnUso.saldo+= Number(dineroDeposito);
     localStorage.setItem('Usuarios', JSON.stringify(GestionUsuarios.usuarios));
-    document.querySelector('#transaccionRealizada').addEventListener('click', volverAHome);
+    // document.querySelector('#transaccionRealizada').addEventListener('click', volverAHome);
+    $(() => $('#transaccionRealizada').on('click', volverAHome));
 }
 
 const depositarDinero = () => {
@@ -53,8 +53,19 @@ const depositarDinero = () => {
     document.querySelector('#textoTransferencia').innerHTML = `Ingrese el valor de su depósito:`;
     document.querySelector(`.transferencia-modal`).click();
     saldoDisponible.innerHTML = `Saldo disponible: $${usuarioEnUso.saldo}`;
-    document.querySelector('#transaccion').addEventListener('submit', depositarEnCuenta);
-    document.querySelector(`#volverAlHome`).addEventListener('click', volverAHome);
+    // document.querySelector('#transaccion').addEventListener('submit', depositarEnCuenta);
+    // document.querySelector(`#volverAlHome`).addEventListener('click', volverAHome);
+    $(() => $('#transaccion').on('submit', depositarEnCuenta));
+    $(() => $('#volverAlHome').on('click', volverAHome));
+}
+
+const agregarMovimientos = (usuarioEnUso) => {
+    const resumen = document.querySelector(`#ultimosMovimientos`);
+    usuarioEnUso.movimientos.forEach( e => {
+        let nuevaOperacion = document.createElement(`p`);
+        nuevaOperacion.innerHTML = e.descripcion;
+        resumen.appendChild(nuevaOperacion);
+    })
 }
 
 const iniciar = () => {
@@ -68,14 +79,19 @@ const iniciar = () => {
         sinMovimientos.innerHTML = `No se registraron movimientos hasta el momento.`
         resumen.appendChild(sinMovimientos);
     }
-    usuarioEnUso.movimientos.forEach( e => {
-        let nuevaOperacion = document.createElement(`p`);
-        nuevaOperacion.innerHTML = e.descripcion;
-        resumen.appendChild(nuevaOperacion);
-    })
-    document.querySelector(`#ingresoDinero`).addEventListener(`click`, depositarDinero);
-    document.querySelector(`#envioDinero`).addEventListener(`click`, transferirDinero);
+    agregarMovimientos(usuarioEnUso);
+    // usuarioEnUso.movimientos.forEach( e => {
+    //     let nuevaOperacion = document.createElement(`p`);
+    //     nuevaOperacion.innerHTML = e.descripcion;
+    //     resumen.appendChild(nuevaOperacion);
+    // })
+    // document.querySelector(`#ingresoDinero`).addEventListener(`click`, depositarDinero);
+    // document.querySelector(`#envioDinero`).addEventListener(`click`, transferirDinero);
+    $(() => $('#ingresoDinero').on('click', depositarDinero));
+    $(() => $('#envioDinero').on('click', transferirDinero));
 }
 
+
 // Este evento carga la información desde el localStorage
-window.addEventListener('load', iniciar);
+$(() => iniciar());
+// window.addEventListener('load', iniciar);

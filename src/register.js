@@ -15,8 +15,8 @@ const iniciar = () => {
     GestionUsuarios.iniciar();
     // Evento que se encarga de otener los datos del formulario de registro al presionar el botón Enviar
     document.querySelector('#registerForm').addEventListener('submit', obtenerDatosFormulario);
-    
 }
 
 // Este evento carga la información desde el localStorage
-window.addEventListener('load', iniciar);
+$(() => iniciar());
+// window.addEventListener('load', iniciar);

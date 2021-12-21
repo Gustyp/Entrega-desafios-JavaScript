@@ -14,4 +14,5 @@ const iniciar = () => {
 }
 
 // Este evento carga la información desde el localStorage
-window.addEventListener('load', iniciar);
+$(() => iniciar());
+// window.addEventListener('load', iniciar);
